@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confeitaria G Gordinho - Gestão Visual</title>
+    <style>
+        :root {
+            --primary: #5c3a21;
+            --secondary: #8c5830;
+            --accent: #d97706;
+            --bg-color: #fef3c7;
+            --card-bg: #fffbeb;
+            --text-color: #3f2c1d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding: 15px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1rem;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .dashboard {
+            display: flex;
+            gap: 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--secondary);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .game-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        @media (max-width: 768px) {
+            .game-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background-color: var(--card-bg);
+            border: 3px solid var(--secondary);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 500px;
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            border-bottom: 2px dashed var(--secondary);
+            width: 100%;
+            text-align: center;
+            padding-bottom: 5px;
+        }
+
+        .client-card {
+            background: white;
+            border: 2px solid #d7ccc8;
+            border-radius: 10px;
+            padding: 12px;
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .patience-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .patience-fill {
+            height: 100%;
+            background-color: #4caf50;
+            width: 100%;
+            transition: width 0.2s linear, background-color 0.3s;
+        }
+
+        .station-group {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .station-group label {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .img-options {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .img-btn {
+            flex: 1;
+            background-color: #fff;
+            border: 3px solid #d7ccc8;
+            border-radius: 10px;
+            padding: 6px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .img-btn img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 4px;
+        }
+
+        .img-btn span {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .img-btn:hover {
+            border-color: var(--secondary);
+            background-color: #fef08a;
+            transform: translateY(-2px);
+        }
+
+        .img-btn.selected {
+            border-color: var(--accent);
+            background-color: #fde047;
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.4);
+        }
+
+        .action-main-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: auto;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+
+        .action-main-btn:hover {
+            background-color: #059669;
+        }
+
+        .action-main-btn:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            display: none;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 4px solid var(--secondary);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .modal-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .modal-btn:hover {
+            background-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎂 Confeitaria G Gordinho 👨‍🍳</h1>
+        <p>Clica nos ingredientes visuais para montar os pedidos!</p>
+    </header>
+
+    <div class="dashboard">
+        <div>Dia: <span id="day-num">1</span></div>
+        <div>Faturamento: R$ <span id="money">0</span> / Meta: R$ <span id="goal">120</span></div>
+        <div>Pedidos: <span id="served-count">0</span>/6</div>
+    </div>
+
+    <div class="game-layout">
+        <!-- Fila de Clientes -->
+        <div class="panel">
+            <div class="panel-title">Fila de Clientes 👥</div>
+            <div id="clients-container" style="width: 100%;">
+                <p style="text-align: center; color: #795548; margin-top: 40px;">Aguardando clientes...</p>
+            </div>
+        </div>
+
+        <!-- Bancada Visual com PNGs -->
+        <div class="panel">
+            <div class="panel-title">Bancada do Gordinho 🧁</div>
+            
+            <div class="station-group">
+                <label>1. Doce Principal:</label>
+                <div class="img-options">
+                    <button class="img-btn" onclick="selecionarIngrediente('doce', 'Brigadeiro', this)">
+                        <img src="imagens/brigadeiro.png" alt="Brigadeiro">
+                        <span>Brigadeiro</span>
+                    </button>
+                    <button class="img-btn" onclick="selecionarIngrediente('doce', 'Maçã do Amor', this)">
+                        <img src="imagens/maca_amor.png" alt="Maçã do Amor">
+                        <span>Maçã do Amor</span>
+                    </button>
+                    <button class="img-btn" onclick="selecionarIngrediente('doce', 'Bolo Decorado', this)">
+                        <img src="imagens/bolo.png" alt="Bolo Decorado">
+                        <span>Bolo Decorado</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="station-group">
+                <label>2. Sabor / Recheio:</label>
+                <div class="img-options">
+                    <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Chocolate', this)">
+                        <img src="imagens/chocolate.png" alt="Chocolate">
+                        <span>Chocolate</span>
+                    </button>
+                    <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Doce de Leite', this)">
+                        <img src="imagens/doce_leite.png" alt="Doce de Leite">
+                        <span>Doce de Leite</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="station-group">
+                <label>3. Cobertura / Toque Final:</label>
+                <div class="img-options">
+                    <button class="img-btn" onclick="selecionarIngrediente('cobertura', 'Granulado', this)">
+                        <img src="imagens/granulado.png" alt="Granulado">
+                        <span>Granulado</span>
+                    </button>
+                    <button class="img-btn" onclick="selecionarIngrediente('cobertura', 'Caramelo', this)">
+                        <img src="imagens/caramelo.png" alt="Caramelo">
+                        <span>Caramelo</span>
+                    </button>
+                </div>
+            </div>
+
+            <button class="action-main-btn" id="deliver-btn" onclick="entregarPedido()" disabled>Entregar Pedido 🚀</button>
+        </div>
+    </div>
+
+    <!-- Modal de Fim de Dia -->
+    <div class="modal" id="day-modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Fim do Expediente!</h2>
+            <p id="modal-text">Resumo do dia na confeitaria.</p>
+            <button class="modal-btn" onclick="proximoDia()">Avançar para o Próximo Dia</button>
+        </div>
+    </div>
+
+    <script>
+        let gameState = {
+            day: 1,
+            money: 0,
+            goal: 120,
+            servedCount: 0,
+            maxClients: 3,
+            clientSpawnInterval: 6500,
+            patienceDecayRate: 0.7
+        };
+
+        let clients = [];
+        let currentRecipe = { doce: null, recheio: null, cobertura: null };
+        let activeClientIdx = 0;
+        let gameInterval = null;
+        let spawnTimer = null;
+
+        // Nomes atualizados exatamente iguais aos botões da bancada
+        const docesOpcoes = ['Brigadeiro', 'Maçã do Amor', 'Bolo Decorado'];
+        const recheiosOpcoes = ['Chocolate', 'Doce de Leite'];
+        const coberturasOpcoes = ['Granulado', 'Caramelo'];
+
+        function iniciarDia() {
+            gameState.money = 0;
+            gameState.servedCount = 0;
+            document.getElementById('day-num').innerText = gameState.day;
+            document.getElementById('money').innerText = gameState.money;
+            document.getElementById('goal').innerText = gameState.goal;
+            document.getElementById('served-count').innerText = gameState.servedCount;
+            document.getElementById('day-modal').style.display = 'none';
+
+            clients = [];
+            gerarCliente();
+
+            if (gameInterval) clearInterval(gameInterval);
+            if (spawnTimer) clearInterval(spawnTimer);
+
+            gameInterval = setInterval(atualizarJogo, 200);
+            spawnTimer = setInterval(() => {
+                if (clients.length < gameState.maxClients) {
+                    gerarCliente();
+                }
+            }, gameState.clientSpawnInterval);
+        }
+
+        function gerarCliente() {
+            const novoCliente = {
+                id: Date.now() + Math.random(),
+                nome: `Cliente #${Math.floor(Math.random() * 900) + 100}`,
+                doce: docesOpcoes[Math.floor(Math.random() * docesOpcoes.length)],
+                recheio: recheiosOpcoes[Math.floor(Math.random() * recheiosOpcoes.length)],
+                cobertura: coberturasOpcoes[Math.floor(Math.random() * coberturasOpcoes.length)],
+                patience: 100
+            };
+            clients.push(novoCliente);
+            renderizarClientes();
+        }
+
+        function selecionarIngrediente(tipo, valor, btnElement) {
+            currentRecipe[tipo] = valor;
+            const parent = btnElement.parentElement;
+            Array.from(parent.children).forEach(b => b.classList.remove('selected'));
+            btnElement.classList.add('selected');
+
+            verificarProntidao();
+        }
+
+        function verificarProntidao() {
+            const pronto = currentRecipe.doce && currentRecipe.recheio && currentRecipe.cobertura && clients.length > 0;
+            document.getElementById('deliver-btn').disabled = !pronto;
+        }
+
+        function atualizarJogo() {
+            for (let i = clients.length - 1; i >= 0; i--) {
+                clients[i].patience -= gameState.patienceDecayRate;
+                if (clients[i].patience <= 0) {
+                    clients.splice(i, 1);
+                }
+            }
+            renderizarClientes();
+            verificarProntidao();
+            verificarFimDeDia();
+        }
+
+        function renderizarClientes() {
+            const container = document.getElementById('clients-container');
+            if (clients.length === 0) {
+                container.innerHTML = `<p style="text-align: center; color: #795548; margin-top: 40px;">Aguardando clientes...</p>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            clients.forEach((c, index) => {
+                const card = document.createElement('div');
+                card.className = 'client-card';
+                card.style.borderColor = (index === activeClientIdx) ? '#5c3a21' : '#d7ccc8';
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; font-weight:bold; color: #5c3a21;">
+                        <span>${c.nome}</span>
+                        <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 8px; border-radius:4px; cursor:pointer;">Atender</button>
+                    </div>
+                    <div style="font-size:0.85rem; color: #5d4037;">
+                        Pediu: <b>${c.doce}</b> (${c.recheio} + ${c.cobertura})
+                    </div>
+                    <div class="patience-bar">
+                        <div class="patience-fill" style="width: ${c.patience}%; background-color: ${c.patience > 40 ? '#10b981' : '#ef4444'};"></div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function selecionarClienteAlvo(index) {
+            activeClientIdx = index;
+            renderizarClientes();
+        }
+
+        function entregarPedido() {
+            if (clients.length === 0) return;
+            if (activeClientIdx >= clients.length) activeClientIdx = 0;
+            
+            const cliente = clients[activeClientIdx];
+
+            if (
+                currentRecipe.doce === cliente.doce &&
+                currentRecipe.recheio === cliente.recheio &&
+                currentRecipe.cobertura === cliente.cobertura
+            ) {
+                gameState.money += 30;
+                gameState.servedCount++;
+                clients.splice(activeClientIdx, 1);
+                activeClientIdx = 0;
+
+                document.getElementById('money').innerText = gameState.money;
+                document.getElementById('served-count').innerText = gameState.servedCount;
+
+                currentRecipe = { doce: null, recheio: null, cobertura: null };
+                document.querySelectorAll('.img-btn').forEach(b => b.classList.remove('selected'));
+                document.getElementById('deliver-btn').disabled = true;
+            } else {
+                alert("A receita entregue não confere com o pedido deste cliente!");
+            }
+        }
+
+        function verificarFimDeDia() {
+            if (gameState.servedCount >= 6) {
+                clearInterval(gameInterval);
+                clearInterval(spawnTimer);
+
+                const modal = document.getElementById('day-modal');
+                const title = document.getElementById('modal-title');
+                const text = document.getElementById('modal-text');
+
+                if (gameState.money >= gameState.goal) {
+                    title.innerText = "Parabéns! Meta Atingida!";
+                    text.innerText = `Faturou R$ ${gameState.money} e bateu o objetivo do dia ${gameState.day}!`;
+                } else {
+                    title.innerText = "Expediente Encerrado";
+                    text.innerText = `Faturou R$ ${gameState.money}, mas faltou para a meta de R$ ${gameState.goal}.`;
+                }
+                modal.style.display = 'flex';
+            }
+        }
+
+        function proximoDia() {
+            if (gameState.money >= gameState.goal) {
+                gameState.day++;
+                gameState.goal += 60;
+            }
+            iniciarDia();
+        }
+
+        iniciarDia();
+    </script>
+</body>
+</html>
