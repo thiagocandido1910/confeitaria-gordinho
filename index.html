@@ -239,7 +239,7 @@
             overflow-y: auto;
         }
 
-        /* Tela Inicial com a imagem exata gerada por ti ocupando o ecrã inteiro */
+        /* Tela Inicial com a imagem personalizada ocupando o ecrã inteiro */
         .modal-content.menu-inicial {
             background-image: url('imagens/tela_inicial.png');
             background-size: contain;
@@ -259,7 +259,6 @@
         /* Áreas de clique posicionadas exatamente por cima de cada botão da imagem */
         .menu-botoes-sobrepostos {
             position: absolute;
-            /* Ajustado para alinhar perfeitamente com a placa de texto à direita da imagem */
             top: 45%;
             right: 15%;
             width: 28%;
@@ -592,6 +591,9 @@
             const dynamicArea = document.getElementById('modal-dynamic-area');
 
             chefImg.style.display = 'block';
+            title.style.display = 'block';
+            text.style.display = 'block';
+
             chefImg.src = "imagens/chef_mascote.png";
             title.innerText = `Preparar para a Fase ${faseNum}! 👨‍🍳`;
             text.innerText = `Atende os pedidos antes que o tempo acabe e cuida da paciência dos clientes!`;
@@ -810,7 +812,10 @@
             const title = document.getElementById('modal-title');
             const text = document.getElementById('modal-text');
             const dynamicArea = document.getElementById('modal-dynamic-area');
+            
             chefImg.style.display = 'block';
+            title.style.display = 'block';
+            text.style.display = 'block';
 
             if (sucesso) {
                 tocarSom('fim_fase');
@@ -846,6 +851,14 @@
         }
 
         function mostrarTelaSalvarScore(container) {
+            const chefImg = document.getElementById('modal-chef-img');
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+            
+            chefImg.style.display = 'block';
+            title.style.display = 'block';
+            text.style.display = 'block';
+
             container.innerHTML = `
                 <input type="text" id="player-name" class="input-nome" placeholder="Digite seu Nome" maxlength="15">
                 <button class="modal-btn" onclick="salvarPontuacaoEVoltarMenu()">Salvar Recorde 💾</button>
@@ -877,14 +890,12 @@
             const boxContent = document.getElementById('modal-box-content');
             boxContent.className = 'modal-content menu-inicial'; 
 
-            // Esconde os textos antigos dentro do menu inicial com imagem
             document.getElementById('modal-chef-img').style.display = 'none';
             document.getElementById('modal-title').style.display = 'none';
             document.getElementById('modal-text').style.display = 'none';
 
             const dynamicArea = document.getElementById('modal-dynamic-area');
 
-            // Botões sobrepostos na exata posição dos botões da imagem
             dynamicArea.innerHTML = `
                 <div class="menu-botoes-sobrepostos">
                     <button class="btn-overlay" onclick="iniciarNovoJogo()"></button>
