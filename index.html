@@ -239,13 +239,12 @@
             overflow-y: auto;
         }
 
-        /* Tela Inicial com a imagem personalizada ocupando o ecrã inteiro */
+        /* Tela Inicial com a tua imagem personalizada */
         .modal-content.menu-inicial {
             background-image: url('imagens/tela_inicial.png');
-            background-size: contain;
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            background-color: #000;
             border: none;
             width: 100vw;
             height: 100dvh;
@@ -256,16 +255,16 @@
             position: relative;
         }
 
-        /* Áreas de clique posicionadas exatamente por cima de cada botão da imagem */
+        /* Container ajustado para cobrir perfeitamente os botões na placa direita da imagem */
         .menu-botoes-sobrepostos {
             position: absolute;
-            top: 45%;
-            right: 15%;
-            width: 28%;
+            top: 46%;
+            left: 51%;
+            width: 42%;
             height: 25%;
             display: flex;
             flex-direction: column;
-            gap: 8%;
+            gap: 10%;
         }
 
         .btn-overlay {
@@ -488,7 +487,7 @@
             servedCount: 0,
             targetServed: 6,
             maxClients: 3,
-            clientSpawnBaseInterval: 6000, // Tempo base para o delay dos pedidos (quanto menor, mais rápido)
+            clientSpawnBaseInterval: 5000,
             patienceDecayRate: 0.4
         };
 
@@ -596,7 +595,7 @@
 
             chefImg.src = "imagens/chef_mascote.png";
             title.innerText = `Preparar para a Fase ${faseNum}! 👨‍🍳`;
-            text.innerText = `Atende os pedidos antes que o tempo acabe e cuida da paciência dos clientes!`;
+            text.innerText = `Atenda os pedidos antes que o tempo acabe e cuide da paciência dos clientes!`;
             dynamicArea.innerHTML = `<button class="modal-btn" onclick="comecarExpediente()">Iniciar Fase ${faseNum} 🎮</button>`;
             modal.style.display = 'flex';
         }
@@ -622,7 +621,6 @@
 
             clients = [];
             currentRecipe = { doce: null, recheio: null, cobertura: null };
-            // Gera o primeiro cliente instantaneamente ao começar a fase
             gerarCliente();
 
             if (gameInterval) clearInterval(gameInterval);
@@ -631,9 +629,7 @@
 
             gameInterval = setInterval(atualizarJogo, 200);
             
-            // --- AJUSTE DO SPAWN (Delay do Pedido) ---
-            // Fase 1: 5s / Fase 2: 4s / Fase 3: 3s / Fase 4: 2s
-            const intervaloSpawn = Math.max(2000, gameState.clientSpawnBaseInterval - (gameState.level * 1000));
+            const intervaloSpawn = Math.max(1500, gameState.clientSpawnBaseInterval - (gameState.level * 900));
             
             spawnTimer = setInterval(() => {
                 if (clients.length < gameState.maxClients && gameStarted) {
@@ -672,9 +668,7 @@
                 doce: cfg.doces[Math.floor(Math.random() * cfg.doces.length)],
                 recheio: cfg.recheios[Math.floor(Math.random() * cfg.recheios.length)],
                 cobertura: cfg.coberturas[Math.floor(Math.random() * cfg.coberturas.length)],
-                // --- AJUSTE NA PACIÊNCIA ---
-                // A paciência base também diminui ligeiramente por fase para compensar
-                patience: 100 - (gameState.level * 5), 
+                patience: 100 - (gameState.level * 4), 
                 alertaEmitido: false
             };
             clients.push(novoCliente);
@@ -704,7 +698,6 @@
 
         function atualizarJogo() {
             if (!gameStarted) return;
-            // A velocidade que a barra diminui aumenta ligeiramente com a fase
             const decay = gameState.patienceDecayRate + (gameState.level * 0.08);
             for (let i = clients.length - 1; i >= 0; i--) {
                 clients[i].patience -= decay;
@@ -772,4 +765,187 @@
             if (!gameStarted || clients.length === 0) return;
             if (activeClientIdx >= clients.length) activeClientIdx = 0;
             
-            const cliente = clients[
+            const cliente = clients[activeClientIdx];
+
+            if (
+                currentRecipe.doce === cliente.doce &&
+                currentRecipe.recheio === cliente.recheio &&
+                currentRecipe.cobertura === cliente.cobertura
+            ) {
+                tocarSom('sucesso');
+                gameState.servedCount++;
+                
+                const pontosGanhos = 100 + Math.floor(cliente.patience * 2);
+                gameState.score += pontosGanhos;
+                document.getElementById('score').innerText = gameState.score;
+
+                clients.splice(activeClientIdx, 1);
+                activeClientIdx = 0;
+
+                document.getElementById('served-count').innerText = gameState.servedCount;
+
+                currentRecipe = { doce: null, recheio: null, cobertura: null };
+                document.querySelectorAll('.img-btn').forEach(b => b.classList.remove('selected'));
+                document.getElementById('deliver-btn').disabled = true;
+
+                if (gameState.servedCount >= gameState.targetServed) {
+                    verificarFimDeDia(true);
+                }
+            } else {
+                tocarSom('erro');
+                perderVida();
+                gameState.score = Math.max(0, gameState.score - 30);
+                document.getElementById('score').innerText = gameState.score;
+            }
+        }
+
+        function verificarFimDeDia(sucesso) {
+            gameStarted = false;
+            clearInterval(gameInterval);
+            clearInterval(spawnTimer);
+            clearInterval(clockTimer);
+
+            const modal = document.getElementById('game-modal');
+            const boxContent = document.getElementById('modal-box-content');
+            boxContent.className = 'modal-content';
+
+            const chefImg = document.getElementById('modal-chef-img');
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+            const dynamicArea = document.getElementById('modal-dynamic-area');
+            
+            chefImg.style.display = 'block';
+            title.style.display = 'block';
+            text.style.display = 'block';
+
+            if (sucesso) {
+                tocarSom('fim_fase');
+                if (gameState.level < 4) {
+                    chefImg.src = "imagens/chef_mascote.png";
+                    title.innerText = `Fase ${gameState.level} Concluída! 🎉`;
+                    text.innerText = `Excelente! Pontuação atual: ${gameState.score}. Prepare-se para a Fase ${gameState.level + 1}!`;
+                    dynamicArea.innerHTML = `<button class="modal-btn" onclick="gameState.level++; mostrarModalInicioFase(gameState.level);">Avançar para Fase ${gameState.level + 1} 🚀</button>`;
+                } else {
+                    chefImg.src = "imagens/chef_vitoria.png";
+                    title.innerText = "Mestre Confeiteiro Supremo! 🏆👑";
+                    text.innerText = `Você zerou o jogo com ${gameState.score} pontos! Registre sua pontuação:`;
+                    mostrarTelaSalvarScore(dynamicArea);
+                }
+            } else {
+                tocarSom('game_over');
+                chefImg.src = "imagens/chef_triste.png";
+                
+                gameState.continues--;
+                atualizarContinuesUI();
+
+                if (gameState.continues > 0) {
+                    title.innerText = "Game Over 💀";
+                    text.innerText = `Perdeu a fase! Restam ${gameState.continues} continue(s). Pontuação: ${gameState.score}`;
+                    dynamicArea.innerHTML = `<button class="modal-btn" onclick="mostrarModalInicioFase(gameState.level);">Tentar Novamente (Restam ${gameState.continues}) 🔄</button>`;
+                } else {
+                    title.innerText = "Fim de Jogo ❌";
+                    text.innerText = `Esgotou os 5 continues! Você voltará para a Fase 1. Pontuação final: ${gameState.score}`;
+                    mostrarTelaSalvarScore(dynamicArea);
+                }
+            }
+            modal.style.display = 'flex';
+        }
+
+        function mostrarTelaSalvarScore(container) {
+            const chefImg = document.getElementById('modal-chef-img');
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+            
+            chefImg.style.display = 'block';
+            title.style.display = 'block';
+            text.style.display = 'block';
+
+            container.innerHTML = `
+                <input type="text" id="player-name" class="input-nome" placeholder="Digite seu Nome" maxlength="15">
+                <button class="modal-btn" onclick="salvarPontuacaoEVoltarMenu()">Salvar Recorde 💾</button>
+            `;
+        }
+
+        function salvarPontuacaoEVoltarMenu() {
+            const nomeInput = document.getElementById('player-name');
+            const nome = nomeInput ? nomeInput.value.trim() || 'Confeiteiro Anônimo' : 'Confeiteiro Anônimo';
+            
+            const agora = new Date();
+            const dataHora = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+
+            let recordes = JSON.parse(localStorage.getItem('g_gordice_recordes') || '[]');
+            recordes.push({ nome: nome, score: gameState.score, data: dataHora });
+            recordes.sort((a, b) => b.score - a.score);
+            recordes = recordes.slice(0, 5);
+
+            localStorage.setItem('g_gordice_recordes', JSON.stringify(recordes));
+            voltarMenuPrincipal();
+        }
+
+        function voltarMenuPrincipal() {
+            gameState.level = 1;
+            gameState.score = 0;
+            gameState.continues = 5;
+            
+            const modal = document.getElementById('game-modal');
+            const boxContent = document.getElementById('modal-box-content');
+            boxContent.className = 'modal-content menu-inicial'; 
+
+            document.getElementById('modal-chef-img').style.display = 'none';
+            document.getElementById('modal-title').style.display = 'none';
+            document.getElementById('modal-text').style.display = 'none';
+
+            const dynamicArea = document.getElementById('modal-dynamic-area');
+
+            dynamicArea.innerHTML = `
+                <div class="menu-botoes-sobrepostos">
+                    <button class="btn-overlay" onclick="iniciarNovoJogo()"></button>
+                    <button class="btn-overlay" onclick="abrirTelaRecordes()"></button>
+                    <a class="btn-overlay" href="https://instagram.com/g_gordice" target="_blank" style="display:block;"></a>
+                </div>
+            `;
+            modal.style.display = 'flex';
+        }
+
+        function abrirTelaRecordes() {
+            const modal = document.getElementById('game-modal');
+            const boxContent = document.getElementById('modal-box-content');
+            boxContent.className = 'modal-content'; 
+
+            const chefImg = document.getElementById('modal-chef-img');
+            chefImg.style.display = 'none';
+
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+            const dynamicArea = document.getElementById('modal-dynamic-area');
+
+            title.style.display = 'block';
+            text.style.display = 'block';
+            title.innerText = "🏆 Tabela de Recordes";
+            text.innerText = "Os melhores confeiteiros da casa:";
+
+            let recordes = JSON.parse(localStorage.getItem('g_gordice_recordes') || '[]');
+            
+            let htmlList = '<div class="score-list">';
+            if (recordes.length === 0) {
+                htmlList += '<p style="text-align:center; padding: 10px; color:#795548;">Nenhum recorde salvo ainda!</p>';
+            } else {
+                recordes.forEach((r, idx) => {
+                    htmlList += `
+                        <div class="score-item">
+                            <span><b>#${idx+1} ${r.nome}</b><br><small style="color:#666;">${r.data}</small></span>
+                            <span style="color:var(--accent); font-weight:bold; align-self:center;">⭐ ${r.score}</span>
+                        </div>
+                    `;
+                });
+            }
+            htmlList += '</div>';
+
+            htmlList += `<button class="modal-btn secondary" onclick="voltarMenuPrincipal()">Voltar ao Menu ⬅️</button>`;
+            dynamicArea.innerHTML = htmlList;
+        }
+
+        voltarMenuPrincipal();
+    </script>
+</body>
+</html>
