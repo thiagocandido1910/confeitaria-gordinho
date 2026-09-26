@@ -29,22 +29,21 @@
             height: 100vh;
             width: 100vw;
             overflow: hidden;
-            padding: 5px;
-            gap: 5px;
+            padding: 4px;
+            gap: 4px;
         }
 
         header {
             text-align: center;
-            height: 28px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
             flex-shrink: 0;
         }
 
         header h1 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--primary);
         }
 
@@ -54,7 +53,7 @@
             justify-content: space-around;
             background: var(--card-bg);
             border: 2px solid var(--secondary);
-            padding: 4px;
+            padding: 3px;
             border-radius: 6px;
             font-weight: bold;
             font-size: 0.75rem;
@@ -62,26 +61,26 @@
             flex-shrink: 0;
         }
 
-        /* Área Superior: Fila de Clientes Ocupando o Espaço Vazio */
+        /* Área da Fila de Clientes */
         .panel-clientes {
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
             border-radius: 8px;
             padding: 4px 6px;
-            height: 24vh;
+            height: 22vh;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
         }
 
         .panel-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--primary);
             text-align: center;
             font-weight: bold;
             border-bottom: 1px dashed var(--secondary);
             padding-bottom: 2px;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         #clients-container {
@@ -96,11 +95,11 @@
             background: white;
             border: 1px solid #d7ccc8;
             border-radius: 6px;
-            padding: 4px 6px;
+            padding: 3px 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
         }
 
         .client-info {
@@ -115,7 +114,7 @@
             background-color: #e0e0e0;
             border-radius: 2px;
             overflow: hidden;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .patience-fill {
@@ -124,12 +123,12 @@
             width: 100%;
         }
 
-        /* Bancada Reduzida e Compacta na Vertical */
+        /* Bancada com Imagens Maiores */
         .panel-bancada {
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
             border-radius: 8px;
-            padding: 6px;
+            padding: 5px 8px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -142,7 +141,7 @@
         }
 
         .station-group label {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: bold;
             color: var(--primary);
             display: block;
@@ -151,7 +150,7 @@
 
         .img-options {
             display: flex;
-            gap: 4px;
+            gap: 6px;
             width: 100%;
             justify-content: center;
         }
@@ -159,9 +158,9 @@
         .img-btn {
             flex: 1;
             background-color: #fff;
-            border: 1px solid #d7ccc8;
-            border-radius: 6px;
-            padding: 2px;
+            border: 2px solid #d7ccc8;
+            border-radius: 8px;
+            padding: 4px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -170,30 +169,32 @@
         }
 
         .img-btn img {
-            width: 32px;
-            height: 32px;
+            width: 52px;
+            height: 52px;
             object-fit: contain;
         }
 
         .img-btn span {
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             font-weight: bold;
             color: var(--text-color);
+            margin-top: 2px;
         }
 
         .img-btn.selected {
             border-color: var(--accent);
             background-color: #fde047;
-            transform: scale(1.02);
+            transform: scale(1.03);
+            box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3);
         }
 
         .action-main-btn {
             background-color: #10b981;
             color: white;
             border: none;
-            padding: 6px;
+            padding: 7px;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
@@ -207,41 +208,53 @@
             box-shadow: none;
         }
 
-        /* Modal */
+        /* Modais Dinâmicos */
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 100;
-            display: none;
         }
 
         .modal-content {
             background: var(--card-bg);
             border: 3px solid var(--secondary);
-            padding: 15px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 12px;
             text-align: center;
             max-width: 280px;
             width: 90%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .modal-chef-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            margin-bottom: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .modal-btn {
-            background-color: var(--secondary);
+            background-color: #10b981;
             color: white;
             border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
+            padding: 7px 12px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 0.8rem;
-            margin-top: 8px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -251,24 +264,21 @@
         <h1>🎂 Confeitaria G Gordinho 👨‍🍳</h1>
     </header>
 
-    <!-- Placar no Topo -->
     <div class="dashboard">
         <div>Dia: <span id="day-num">1</span></div>
         <div>R$: <span id="money">0</span> / Meta: <span id="goal">120</span></div>
         <div>Pedidos: <span id="served-count">0</span>/6</div>
     </div>
 
-    <!-- Fila de Clientes Ocupando o Topo -->
     <div class="panel-clientes">
         <div class="panel-title">Fila de Clientes 👥</div>
         <div id="clients-container">
-            <p style="text-align: center; color: #795548; font-size: 0.7rem;">Aguardando...</p>
+            <p style="text-align: center; color: #795548; font-size: 0.7rem;">Aguardando início...</p>
         </div>
     </div>
 
-    <!-- Bancada Compactada em Baixo -->
     <div class="panel-bancada">
-        <div class="panel-title" style="margin-bottom: 2px;">Bancada do Gordinho 🧁</div>
+        <div class="panel-title">Bancada do Gordinho 🧁</div>
         
         <div class="station-group">
             <label>1. Doce Principal:</label>
@@ -293,11 +303,11 @@
             <div class="img-options">
                 <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Chocolate', this)">
                     <img src="imagens/chocolate.png" alt="Chocolate">
-                    <span>Choc.</span>
+                    <span>Chocolate</span>
                 </button>
                 <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Doce de Leite', this)">
                     <img src="imagens/doce_leite.png" alt="Doce de Leite">
-                    <span>D. Leite</span>
+                    <span>Doce de Leite</span>
                 </button>
             </div>
         </div>
@@ -319,16 +329,102 @@
         <button class="action-main-btn" id="deliver-btn" onclick="entregarPedido()" disabled>Entregar Pedido 🚀</button>
     </div>
 
-    <!-- Modal Fim de Dia -->
-    <div class="modal" id="day-modal">
+    <!-- Modal Dinâmico Geral -->
+    <div class="modal" id="game-modal">
         <div class="modal-content">
-            <h2 id="modal-title" style="font-size: 1rem; color: var(--primary);">Fim do Expediente!</h2>
-            <p id="modal-text" style="font-size: 0.8rem; margin: 8px 0;">Resumo do dia.</p>
-            <button class="modal-btn" onclick="proximoDia()">Próximo Dia</button>
+            <img src="imagens/chef_mascote.png" alt="Chef Gordinho" class="modal-chef-img">
+            <h2 id="modal-title" style="font-size: 0.95rem; color: var(--primary);">Bem-vindo à Confeitaria!</h2>
+            <p id="modal-text" style="font-size: 0.75rem; margin: 6px 0;">Prepare os doces certos e entregue <strong>6 pedidos</strong> para bater a meta do dia!</p>
+            <button class="modal-btn" id="modal-action-btn" onclick="comecarExpediente()">Iniciar Dia 1 🎮</button>
         </div>
     </div>
 
     <script>
+        // Sistema de Áudio Nativo (Web Audio API) sem ficheiros externos
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function tocarSom(tipo) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (tipo === 'clique1') { // Ingrediente 1
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.exponentialRampToValueAtTime(450, now + 0.08);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            } else if (tipo === 'clique2') { // Ingrediente 2
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(550, now + 0.08);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            } else if (tipo === 'clique3') { // Ingrediente 3
+                osc.frequency.setValueAtTime(500, now);
+                osc.frequency.exponentialRampToValueAtTime(650, now + 0.08);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            } else if (tipo === 'novo_pedido') { // Chegada de pedido
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(587.33, now); // D5
+                osc.frequency.setValueAtTime(880, now + 0.1); // A5
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (tipo === 'sucesso') { // Pedido entregue com sucesso
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (tipo === 'erro') { // Receita errada
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(180, now);
+                osc.frequency.setValueAtTime(120, now + 0.15);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (tipo === 'alerta_paciencia') { // Cliente quase a perder a paciência
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(300, now);
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.1);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            } else if (tipo === 'fim_fase') { // Fim de fase / meta batida
+                osc.type = 'sine';
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const timeOffset = now + idx * 0.12;
+                    const o = audioCtx.createOscillator();
+                    const g = audioCtx.createGain();
+                    o.connect(g);
+                    g.connect(audioCtx.destination);
+                    o.frequency.setValueAtTime(freq, timeOffset);
+                    g.gain.setValueAtTime(0.2, timeOffset);
+                    g.gain.linearRampToValueAtTime(0.01, timeOffset + 0.25);
+                    o.start(timeOffset);
+                    o.stop(timeOffset + 0.25);
+                });
+            }
+        }
+
         let gameState = {
             day: 1,
             money: 0,
@@ -344,19 +440,20 @@
         let activeClientIdx = 0;
         let gameInterval = null;
         let spawnTimer = null;
+        let gameStarted = false;
 
         const docesOpcoes = ['Brigadeiro', 'Maçã do Amor', 'Bolo Decorado'];
         const recheiosOpcoes = ['Chocolate', 'Doce de Leite'];
         const coberturasOpcoes = ['Granulado', 'Caramelo'];
 
-        function iniciarDia() {
+        function comecarExpediente() {
+            document.getElementById('game-modal').style.display = 'none';
             gameState.money = 0;
             gameState.servedCount = 0;
             document.getElementById('day-num').innerText = gameState.day;
             document.getElementById('money').innerText = gameState.money;
             document.getElementById('goal').innerText = gameState.goal;
             document.getElementById('served-count').innerText = gameState.servedCount;
-            document.getElementById('day-modal').style.display = 'none';
 
             clients = [];
             gerarCliente();
@@ -370,6 +467,7 @@
                     gerarCliente();
                 }
             }, gameState.clientSpawnInterval);
+            gameStarted = true;
         }
 
         function gerarCliente() {
@@ -379,14 +477,23 @@
                 doce: docesOpcoes[Math.floor(Math.random() * docesOpcoes.length)],
                 recheio: recheiosOpcoes[Math.floor(Math.random() * recheiosOpcoes.length)],
                 cobertura: coberturasOpcoes[Math.floor(Math.random() * coberturasOpcoes.length)],
-                patience: 100
+                patience: 100,
+                alertaEmitido: false
             };
             clients.push(novoCliente);
+            tocarSom('novo_pedido');
             renderizarClientes();
         }
 
         function selecionarIngrediente(tipo, valor, btnElement) {
+            if (!gameStarted) return;
             currentRecipe[tipo] = valor;
+            
+            // Toca som diferente consoante o grupo do ingrediente
+            if (tipo === 'doce') tocarSom('clique1');
+            else if (tipo === 'recheio') tocarSom('clique2');
+            else if (tipo === 'cobertura') tocarSom('clique3');
+
             const parent = btnElement.parentElement;
             Array.from(parent.children).forEach(b => b.classList.remove('selected'));
             btnElement.classList.add('selected');
@@ -400,8 +507,16 @@
         }
 
         function atualizarJogo() {
+            if (!gameStarted) return;
             for (let i = clients.length - 1; i >= 0; i--) {
                 clients[i].patience -= gameState.patienceDecayRate;
+                
+                // Alerta sonoro quando a paciência estiver baixa (abaixo de 30%)
+                if (clients[i].patience <= 30 && clients[i].patience > 0 && !clients[i].alertaEmitido) {
+                    tocarSom('alerta_paciencia');
+                    clients[i].alertaEmitido = true;
+                }
+
                 if (clients[i].patience <= 0) {
                     clients.splice(i, 1);
                 }
@@ -429,7 +544,7 @@
                         <span style="color: #5d4037;">${c.doce} (${c.recheio}+${c.cobertura})</span>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
-                        <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer; font-size: 0.6rem;">Atender</button>
+                        <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 6px; border-radius:3px; cursor:pointer; font-size: 0.65rem;">Atender</button>
                         <div class="patience-bar">
                             <div class="patience-fill" style="width: ${c.patience}%; background-color: ${c.patience > 40 ? '#10b981' : '#ef4444'};"></div>
                         </div>
@@ -441,11 +556,12 @@
 
         function selecionarClienteAlvo(index) {
             activeClientIdx = index;
+            tocarSom('clique1');
             renderizarClientes();
         }
 
         function entregarPedido() {
-            if (clients.length === 0) return;
+            if (!gameStarted || clients.length === 0) return;
             if (activeClientIdx >= clients.length) activeClientIdx = 0;
             
             const cliente = clients[activeClientIdx];
@@ -455,6 +571,7 @@
                 currentRecipe.recheio === cliente.recheio &&
                 currentRecipe.cobertura === cliente.cobertura
             ) {
+                tocarSom('sucesso');
                 gameState.money += 30;
                 gameState.servedCount++;
                 clients.splice(activeClientIdx, 1);
@@ -467,39 +584,66 @@
                 document.querySelectorAll('.img-btn').forEach(b => b.classList.remove('selected'));
                 document.getElementById('deliver-btn').disabled = true;
             } else {
-                alert("A receita não confere com o pedido deste cliente!");
+                tocarSom('erro');
+                mostrarAvisoErro();
             }
+        }
+
+        function mostrarAvisoErro() {
+            const modal = document.getElementById('game-modal');
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+            const btn = document.getElementById('modal-action-btn');
+
+            title.innerText = "Ops! Receita Errada! ❌";
+            text.innerText = "A combinação de doces não confere com o pedido deste cliente. Verifique os ingredientes!";
+            btn.innerText = "Tentar Novamente 🧁";
+            
+            btn.onclick = fecharAvisoErro;
+            modal.style.display = 'flex';
+        }
+
+        function fecharAvisoErro() {
+            tocarSom('clique1');
+            document.getElementById('game-modal').style.display = 'none';
+            const btn = document.getElementById('modal-action-btn');
+            btn.onclick = proximoDia;
         }
 
         function verificarFimDeDia() {
             if (gameState.servedCount >= 6) {
+                gameStarted = false;
                 clearInterval(gameInterval);
                 clearInterval(spawnTimer);
+                tocarSom('fim_fase');
 
-                const modal = document.getElementById('day-modal');
+                const modal = document.getElementById('game-modal');
                 const title = document.getElementById('modal-title');
                 const text = document.getElementById('modal-text');
+                const btn = document.getElementById('modal-action-btn');
 
                 if (gameState.money >= gameState.goal) {
-                    title.innerText = "Parabéns! Meta Atingida!";
+                    title.innerText = "Parabéns! Meta Atingida! 🎉";
                     text.innerText = `Faturou R$ ${gameState.money} e bateu a meta do dia ${gameState.day}!`;
                 } else {
-                    title.innerText = "Expediente Encerrado";
+                    title.innerText = "Expediente Encerrado 📦";
                     text.innerText = `Faturou R$ ${gameState.money}, mas faltou para a meta de R$ ${gameState.goal}.`;
                 }
+                
+                btn.innerText = "Iniciar Próximo Dia 🚀";
+                btn.onclick = proximoDia;
                 modal.style.display = 'flex';
             }
         }
 
         function proximoDia() {
+            tocarSom('clique1');
             if (gameState.money >= gameState.goal) {
                 gameState.day++;
                 gameState.goal += 60;
             }
-            iniciarDia();
+            comecarExpediente();
         }
-
-        iniciarDia();
     </script>
 </body>
 </html>
