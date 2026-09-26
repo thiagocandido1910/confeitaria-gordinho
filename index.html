@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Confeitaria G Gordinho - Mobile Portrait</title>
     <style>
         :root {
@@ -29,13 +29,13 @@
             height: 100vh;
             width: 100vw;
             overflow: hidden;
-            padding: 4px;
-            gap: 4px;
+            padding: 3px;
+            gap: 3px;
         }
 
         header {
             text-align: center;
-            height: 24px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -43,7 +43,7 @@
         }
 
         header h1 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--primary);
         }
 
@@ -53,11 +53,11 @@
             justify-content: space-around;
             background: var(--card-bg);
             border: 2px solid var(--secondary);
-            padding: 3px;
+            padding: 2px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.75rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-size: 0.72rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
             flex-shrink: 0;
         }
 
@@ -66,20 +66,21 @@
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
             border-radius: 8px;
-            padding: 4px 6px;
-            height: 22vh;
+            padding: 3px 5px;
+            height: 20vh;
+            min-height: 100px;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
         }
 
         .panel-title {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--primary);
             text-align: center;
             font-weight: bold;
             border-bottom: 1px dashed var(--secondary);
-            padding-bottom: 2px;
+            padding-bottom: 1px;
             margin-bottom: 2px;
         }
 
@@ -88,18 +89,18 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 2px;
         }
 
         .client-card {
             background: white;
             border: 1px solid #d7ccc8;
-            border-radius: 6px;
-            padding: 3px 6px;
+            border-radius: 5px;
+            padding: 2px 5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.68rem;
+            font-size: 0.65rem;
         }
 
         .client-info {
@@ -109,8 +110,8 @@
         }
 
         .patience-bar {
-            width: 50px;
-            height: 4px;
+            width: 45px;
+            height: 3px;
             background-color: #e0e0e0;
             border-radius: 2px;
             overflow: hidden;
@@ -123,25 +124,26 @@
             width: 100%;
         }
 
-        /* Bancada com Imagens Maiores */
+        /* Bancada Otimizada para Caber no Telemóvel */
         .panel-bancada {
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
             border-radius: 8px;
-            padding: 5px 8px;
+            padding: 4px 6px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             flex-grow: 1;
+            overflow: hidden;
         }
 
         .station-group {
             width: 100%;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .station-group label {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             font-weight: bold;
             color: var(--primary);
             display: block;
@@ -150,7 +152,7 @@
 
         .img-options {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             width: 100%;
             justify-content: center;
         }
@@ -159,8 +161,8 @@
             flex: 1;
             background-color: #fff;
             border: 2px solid #d7ccc8;
-            border-radius: 8px;
-            padding: 4px;
+            border-radius: 6px;
+            padding: 2px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -169,37 +171,38 @@
         }
 
         .img-btn img {
-            width: 52px;
-            height: 52px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
         }
 
         .img-btn span {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             font-weight: bold;
             color: var(--text-color);
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .img-btn.selected {
             border-color: var(--accent);
             background-color: #fde047;
-            transform: scale(1.03);
-            box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3);
+            transform: scale(1.02);
+            box-shadow: 0 1px 3px rgba(217, 119, 6, 0.3);
         }
 
         .action-main-btn {
             background-color: #10b981;
             color: white;
             border: none;
-            padding: 7px;
+            padding: 6px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-top: 2px;
+            flex-shrink: 0;
         }
 
         .action-main-btn:disabled {
@@ -234,8 +237,8 @@
         }
 
         .modal-chef-img {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--accent);
@@ -302,12 +305,12 @@
             <label>2. Sabor / Recheio:</label>
             <div class="img-options">
                 <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Chocolate', this)">
-                    <img src="imagens/chocolate.png" alt="Chocolate">
-                    <span>Chocolate</span>
+                    <img src="imagens/chocolate.png" alt="Choc.">
+                    <span>Choc.</span>
                 </button>
                 <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Doce de Leite', this)">
-                    <img src="imagens/doce_leite.png" alt="Doce de Leite">
-                    <span>Doce de Leite</span>
+                    <img src="imagens/doce_leite.png" alt="D. Leite">
+                    <span>D. Leite</span>
                 </button>
             </div>
         </div>
@@ -340,7 +343,6 @@
     </div>
 
     <script>
-        // Sistema de Áudio Nativo (Web Audio API) sem ficheiros externos
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function tocarSom(tipo) {
@@ -354,45 +356,45 @@
 
             const now = audioCtx.currentTime;
 
-            if (tipo === 'clique1') { // Ingrediente 1
+            if (tipo === 'clique1') {
                 osc.frequency.setValueAtTime(300, now);
                 osc.frequency.exponentialRampToValueAtTime(450, now + 0.08);
                 gain.gain.setValueAtTime(0.15, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
                 osc.start(now);
                 osc.stop(now + 0.08);
-            } else if (tipo === 'clique2') { // Ingrediente 2
+            } else if (tipo === 'clique2') {
                 osc.frequency.setValueAtTime(400, now);
                 osc.frequency.exponentialRampToValueAtTime(550, now + 0.08);
                 gain.gain.setValueAtTime(0.15, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
                 osc.start(now);
                 osc.stop(now + 0.08);
-            } else if (tipo === 'clique3') { // Ingrediente 3
+            } else if (tipo === 'clique3') {
                 osc.frequency.setValueAtTime(500, now);
                 osc.frequency.exponentialRampToValueAtTime(650, now + 0.08);
                 gain.gain.setValueAtTime(0.15, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
                 osc.start(now);
                 osc.stop(now + 0.08);
-            } else if (tipo === 'novo_pedido') { // Chegada de pedido
+            } else if (tipo === 'novo_pedido') {
                 osc.type = 'triangle';
-                osc.frequency.setValueAtTime(587.33, now); // D5
-                osc.frequency.setValueAtTime(880, now + 0.1); // A5
+                osc.frequency.setValueAtTime(587.33, now);
+                osc.frequency.setValueAtTime(880, now + 0.1);
                 gain.gain.setValueAtTime(0.2, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
                 osc.start(now);
                 osc.stop(now + 0.3);
-            } else if (tipo === 'sucesso') { // Pedido entregue com sucesso
+            } else if (tipo === 'sucesso') {
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(523.25, now); // C5
-                osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
-                osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.08);
+                osc.frequency.setValueAtTime(783.99, now + 0.16);
                 gain.gain.setValueAtTime(0.2, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
                 osc.start(now);
                 osc.stop(now + 0.3);
-            } else if (tipo === 'erro') { // Receita errada
+            } else if (tipo === 'erro') {
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(180, now);
                 osc.frequency.setValueAtTime(120, now + 0.15);
@@ -400,14 +402,14 @@
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
                 osc.start(now);
                 osc.stop(now + 0.3);
-            } else if (tipo === 'alerta_paciencia') { // Cliente quase a perder a paciência
+            } else if (tipo === 'alerta_paciencia') {
                 osc.type = 'square';
                 osc.frequency.setValueAtTime(300, now);
                 gain.gain.setValueAtTime(0.08, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.1);
                 osc.start(now);
                 osc.stop(now + 0.1);
-            } else if (tipo === 'fim_fase') { // Fim de fase / meta batida
+            } else if (tipo === 'fim_fase') {
                 osc.type = 'sine';
                 const notes = [523.25, 659.25, 783.99, 1046.50];
                 notes.forEach((freq, idx) => {
@@ -489,7 +491,6 @@
             if (!gameStarted) return;
             currentRecipe[tipo] = valor;
             
-            // Toca som diferente consoante o grupo do ingrediente
             if (tipo === 'doce') tocarSom('clique1');
             else if (tipo === 'recheio') tocarSom('clique2');
             else if (tipo === 'cobertura') tocarSom('clique3');
@@ -511,7 +512,6 @@
             for (let i = clients.length - 1; i >= 0; i--) {
                 clients[i].patience -= gameState.patienceDecayRate;
                 
-                // Alerta sonoro quando a paciência estiver baixa (abaixo de 30%)
                 if (clients[i].patience <= 30 && clients[i].patience > 0 && !clients[i].alertaEmitido) {
                     tocarSom('alerta_paciencia');
                     clients[i].alertaEmitido = true;
@@ -544,7 +544,7 @@
                         <span style="color: #5d4037;">${c.doce} (${c.recheio}+${c.cobertura})</span>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
-                        <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 6px; border-radius:3px; cursor:pointer; font-size: 0.65rem;">Atender</button>
+                        <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer; font-size: 0.6rem;">Atender</button>
                         <div class="patience-bar">
                             <div class="patience-fill" style="width: ${c.patience}%; background-color: ${c.patience > 40 ? '#10b981' : '#ef4444'};"></div>
                         </div>
