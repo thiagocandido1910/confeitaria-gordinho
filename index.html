@@ -26,17 +26,16 @@
             color: var(--text-color);
             display: flex;
             flex-direction: column;
-            /* Usa dvh para se adaptar perfeitamente às barras do Android/Browser */
             height: 100dvh;
             width: 100vw;
             overflow: hidden;
-            padding: 4px 4px 12px 4px; /* Margem extra em baixo para a barra do Android */
+            padding: 4px 4px 12px 4px;
             gap: 3px;
         }
 
         header {
             text-align: center;
-            height: 22px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -44,11 +43,11 @@
         }
 
         header h1 {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--primary);
         }
 
-        /* Placar Compacto no Topo */
+        /* Placar Compacto */
         .dashboard {
             display: flex;
             justify-content: space-around;
@@ -57,26 +56,26 @@
             padding: 3px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.72rem;
+            font-size: 0.62rem;
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
             flex-shrink: 0;
         }
 
-        /* Área da Fila de Clientes */
+        /* Fila de Clientes */
         .panel-clientes {
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
             border-radius: 6px;
             padding: 3px 5px;
-            height: 17vh;
-            min-height: 80px;
+            height: 16vh;
+            min-height: 75px;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
         }
 
         .panel-title {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             color: var(--primary);
             text-align: center;
             font-weight: bold;
@@ -101,7 +100,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             flex-shrink: 0;
         }
 
@@ -112,7 +111,7 @@
         }
 
         .patience-bar {
-            width: 42px;
+            width: 40px;
             height: 3px;
             background-color: #e0e0e0;
             border-radius: 2px;
@@ -126,7 +125,7 @@
             width: 100%;
         }
 
-        /* Bancada Adaptada com Scroll Interno Seguro */
+        /* Bancada */
         .panel-bancada {
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
@@ -145,7 +144,7 @@
         }
 
         .station-group label {
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: bold;
             color: var(--primary);
             display: block;
@@ -157,10 +156,12 @@
             gap: 4px;
             width: 100%;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .img-btn {
             flex: 1;
+            min-width: 42px;
             background-color: #fff;
             border: 2px solid #d7ccc8;
             border-radius: 6px;
@@ -169,27 +170,27 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.1s ease;
         }
 
         .img-btn img {
-            width: 36px;
-            height: 36px;
+            width: 24px;
+            height: 24px;
             object-fit: contain;
         }
 
         .img-btn span {
-            font-size: 0.58rem;
+            font-size: 0.48rem;
             font-weight: bold;
             color: var(--text-color);
             margin-top: 1px;
+            text-align: center;
+            white-space: nowrap;
         }
 
         .img-btn.selected {
             border-color: var(--accent);
             background-color: #fde047;
             transform: scale(1.02);
-            box-shadow: 0 1px 2px rgba(217, 119, 6, 0.3);
         }
 
         .action-main-btn {
@@ -198,7 +199,7 @@
             border: none;
             padding: 7px;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
@@ -210,17 +211,16 @@
         .action-main-btn:disabled {
             background-color: #cbd5e1;
             cursor: not-allowed;
-            box-shadow: none;
         }
 
-        /* Modais Dinâmicos */
+        /* Modais Gerais */
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.85);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -233,19 +233,59 @@
             padding: 14px;
             border-radius: 10px;
             text-align: center;
-            max-width: 270px;
+            max-width: 290px;
             width: 90%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
+        /* Tela Inicial com a imagem exata gerada por ti ocupando o ecrã inteiro */
+        .modal-content.menu-inicial {
+            background-image: url('imagens/tela_inicial.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #000;
+            border: none;
+            width: 100vw;
+            height: 100dvh;
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Áreas de clique posicionadas exatamente por cima de cada botão da imagem */
+        .menu-botoes-sobrepostos {
+            position: absolute;
+            /* Ajustado para alinhar perfeitamente com a placa de texto à direita da imagem */
+            top: 45%;
+            right: 15%;
+            width: 28%;
+            height: 25%;
+            display: flex;
+            flex-direction: column;
+            gap: 8%;
+        }
+
+        .btn-overlay {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Estilo para os outros modais (Fase, Game Over, Recordes) */
         .modal-chef-img {
-            width: 75px;
-            height: 75px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--accent);
-            margin-bottom: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 4px;
+            background: #fff;
         }
 
         .modal-btn {
@@ -256,10 +296,51 @@
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 0.85rem;
-            margin-top: 8px;
+            font-size: 0.8rem;
+            margin-top: 6px;
             width: 100%;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+
+        .modal-btn.secondary {
+            background-color: #d97706;
+            margin-top: 4px;
+        }
+
+        .modal-btn.instagram {
+            background-color: #e1306c;
+            text-decoration: none;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .input-nome {
+            width: 100%;
+            padding: 6px;
+            border: 2px solid var(--secondary);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-align: center;
+            margin: 6px 0;
+            background: #fff;
+        }
+
+        .score-list {
+            text-align: left;
+            font-size: 0.68rem;
+            margin: 6px 0;
+            max-height: 130px;
+            overflow-y: auto;
+            border: 1px solid #d7ccc8;
+            padding: 4px;
+            border-radius: 4px;
+            background: #fff;
+        }
+
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding: 2px 0;
         }
     </style>
 </head>
@@ -270,15 +351,17 @@
     </header>
 
     <div class="dashboard">
-        <div>Dia: <span id="day-num">1</span></div>
-        <div>R$: <span id="money">0</span> / Meta: <span id="goal">120</span></div>
-        <div>Pedidos: <span id="served-count">0</span>/6</div>
+        <div>Fase: <span id="day-num">1</span></div>
+        <div>⭐ <span id="score">0</span></div>
+        <div>⏱️ <span id="timer">60</span>s</div>
+        <div>Vidas: <span id="lives">❤️❤️❤️</span></div>
+        <div>Continues: <span id="continues">5</span>/5</div>
     </div>
 
     <div class="panel-clientes">
-        <div class="panel-title">Fila de Clientes 👥</div>
+        <div class="panel-title">Fila de Clientes 👥 (Pedidos: <span id="served-count">0</span>/<span id="target-count">6</span>)</div>
         <div id="clients-container">
-            <p style="text-align: center; color: #795548; font-size: 0.68rem;">Aguardando início...</p>
+            <p style="text-align: center; color: #795548; font-size: 0.65rem;">Aguardando início...</p>
         </div>
     </div>
 
@@ -287,60 +370,33 @@
         
         <div class="station-group">
             <label>1. Doce Principal:</label>
-            <div class="img-options">
-                <button class="img-btn" onclick="selecionarIngrediente('doce', 'Brigadeiro', this)">
-                    <img src="imagens/brigadeiro.png" alt="Brigadeiro">
-                    <span>Brigadeiro</span>
-                </button>
-                <button class="img-btn" onclick="selecionarIngrediente('doce', 'Maçã do Amor', this)">
-                    <img src="imagens/maca_amor.png" alt="Maçã">
-                    <span>Maçã</span>
-                </button>
-                <button class="img-btn" onclick="selecionarIngrediente('doce', 'Bolo Decorado', this)">
-                    <img src="imagens/bolo.png" alt="Bolo">
-                    <span>Bolo</span>
-                </button>
-            </div>
+            <div class="img-options" id="options-doce"></div>
         </div>
 
         <div class="station-group">
             <label>2. Sabor / Recheio:</label>
-            <div class="img-options">
-                <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Chocolate', this)">
-                    <img src="imagens/chocolate.png" alt="Choc.">
-                    <span>Choc.</span>
-                </button>
-                <button class="img-btn" onclick="selecionarIngrediente('recheio', 'Doce de Leite', this)">
-                    <img src="imagens/doce_leite.png" alt="D. Leite">
-                    <span>D. Leite</span>
-                </button>
-            </div>
+            <div class="img-options" id="options-recheio"></div>
         </div>
 
         <div class="station-group">
             <label>3. Cobertura:</label>
-            <div class="img-options">
-                <button class="img-btn" onclick="selecionarIngrediente('cobertura', 'Granulado', this)">
-                    <img src="imagens/granulado.png" alt="Granulado">
-                    <span>Granulado</span>
-                </button>
-                <button class="img-btn" onclick="selecionarIngrediente('cobertura', 'Caramelo', this)">
-                    <img src="imagens/caramelo.png" alt="Caramelo">
-                    <span>Caramelo</span>
-                </button>
-            </div>
+            <div class="img-options" id="options-cobertura"></div>
         </div>
 
         <button class="action-main-btn" id="deliver-btn" onclick="entregarPedido()" disabled>Entregar Pedido 🚀</button>
     </div>
 
-    <!-- Modal Dinâmico Geral -->
+    <!-- Modal Dinâmico / Telas -->
     <div class="modal" id="game-modal">
-        <div class="modal-content">
-            <img src="imagens/chef_mascote.png" alt="Chef Gordinho" class="modal-chef-img">
-            <h2 id="modal-title" style="font-size: 0.95rem; color: var(--primary);">Bem-vindo à Confeitaria!</h2>
-            <p id="modal-text" style="font-size: 0.72rem; margin: 6px 0;">Prepare os doces certos e entregue <strong>6 pedidos</strong> para bater a meta do dia!</p>
-            <button class="modal-btn" id="modal-action-btn" onclick="comecarExpediente()">Iniciar Dia 1 🎮</button>
+        <div class="modal-content" id="modal-box-content">
+            <img id="modal-chef-img" src="imagens/chef_mascote.png" alt="Chef Gordinho" class="modal-chef-img">
+            <h2 id="modal-title" style="font-size: 0.95rem; color: var(--primary);">Confeitaria G Gordinho</h2>
+            <p id="modal-text" style="font-size: 0.72rem; margin: 6px 0;">Seja bem-vindo! Prepare os doces, atenda os clientes e conquiste o topo dos recordes.</p>
+            <div id="modal-dynamic-area">
+                <button class="modal-btn" onclick="iniciarNovoJogo()">Novo Jogo 🎮</button>
+                <button class="modal-btn secondary" onclick="abrirTelaRecordes()">🏆 Recordes</button>
+                <a class="modal-btn instagram" href="https://instagram.com/g_gordice" target="_blank">📷 Instagram @g_gordice</a>
+            </div>
         </div>
     </div>
 
@@ -348,14 +404,11 @@
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function tocarSom(tipo) {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.connect(gain);
             gain.connect(audioCtx.destination);
-
             const now = audioCtx.currentTime;
 
             if (tipo === 'clique1') {
@@ -363,30 +416,26 @@
                 osc.frequency.exponentialRampToValueAtTime(450, now + 0.08);
                 gain.gain.setValueAtTime(0.15, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
-                osc.start(now);
-                osc.stop(now + 0.08);
+                osc.start(now); osc.stop(now + 0.08);
             } else if (tipo === 'clique2') {
                 osc.frequency.setValueAtTime(400, now);
                 osc.frequency.exponentialRampToValueAtTime(550, now + 0.08);
                 gain.gain.setValueAtTime(0.15, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
-                osc.start(now);
-                osc.stop(now + 0.08);
+                osc.start(now); osc.stop(now + 0.08);
             } else if (tipo === 'clique3') {
                 osc.frequency.setValueAtTime(500, now);
                 osc.frequency.exponentialRampToValueAtTime(650, now + 0.08);
                 gain.gain.setValueAtTime(0.15, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
-                osc.start(now);
-                osc.stop(now + 0.08);
+                osc.start(now); osc.stop(now + 0.08);
             } else if (tipo === 'novo_pedido') {
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(587.33, now);
                 osc.frequency.setValueAtTime(880, now + 0.1);
                 gain.gain.setValueAtTime(0.2, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
-                osc.start(now);
-                osc.stop(now + 0.3);
+                osc.start(now); osc.stop(now + 0.3);
             } else if (tipo === 'sucesso') {
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(523.25, now);
@@ -394,23 +443,27 @@
                 osc.frequency.setValueAtTime(783.99, now + 0.16);
                 gain.gain.setValueAtTime(0.2, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
-                osc.start(now);
-                osc.stop(now + 0.3);
+                osc.start(now); osc.stop(now + 0.3);
             } else if (tipo === 'erro') {
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(180, now);
                 osc.frequency.setValueAtTime(120, now + 0.15);
                 gain.gain.setValueAtTime(0.2, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
-                osc.start(now);
-                osc.stop(now + 0.3);
+                osc.start(now); osc.stop(now + 0.3);
+            } else if (tipo === 'game_over') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.linearRampToValueAtTime(100, now + 0.5);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.6);
+                osc.start(now); osc.stop(now + 0.6);
             } else if (tipo === 'alerta_paciencia') {
                 osc.type = 'square';
                 osc.frequency.setValueAtTime(300, now);
                 gain.gain.setValueAtTime(0.08, now);
                 gain.gain.linearRampToValueAtTime(0.01, now + 0.1);
-                osc.start(now);
-                osc.stop(now + 0.1);
+                osc.start(now); osc.stop(now + 0.1);
             } else if (tipo === 'fim_fase') {
                 osc.type = 'sine';
                 const notes = [523.25, 659.25, 783.99, 1046.50];
@@ -418,25 +471,57 @@
                     const timeOffset = now + idx * 0.12;
                     const o = audioCtx.createOscillator();
                     const g = audioCtx.createGain();
-                    o.connect(g);
-                    g.connect(audioCtx.destination);
+                    o.connect(g); g.connect(audioCtx.destination);
                     o.frequency.setValueAtTime(freq, timeOffset);
                     g.gain.setValueAtTime(0.2, timeOffset);
                     g.gain.linearRampToValueAtTime(0.01, timeOffset + 0.25);
-                    o.start(timeOffset);
-                    o.stop(timeOffset + 0.25);
+                    o.start(timeOffset); o.stop(timeOffset + 0.25);
                 });
             }
         }
 
         let gameState = {
-            day: 1,
-            money: 0,
-            goal: 120,
+            level: 1,
+            score: 0,
+            lives: 3,
+            continues: 5,
+            timeLeft: 60,
             servedCount: 0,
+            targetServed: 6,
             maxClients: 3,
             clientSpawnInterval: 6500,
-            patienceDecayRate: 0.6
+            patienceDecayRate: 0.4
+        };
+
+        const fasesConfig = {
+            1: {
+                time: 60, target: 6,
+                bg: "#fef3c7", cardBg: "#fffbeb", primary: "#5c3a21", secondary: "#8c5830",
+                doces: ['Brigadeiro', 'Maçã do Amor'],
+                recheios: ['Chocolate', 'Doce de Leite'],
+                coberturas: ['Granulado', 'Caramelo']
+            },
+            2: {
+                time: 50, target: 8,
+                bg: "#fce7f3", cardBg: "#fdf2f8", primary: "#831843", secondary: "#be185d",
+                doces: ['Brigadeiro', 'Maçã do Amor', 'Bolo Decorado'],
+                recheios: ['Chocolate', 'Doce de Leite', 'Coco'],
+                coberturas: ['Granulado', 'Caramelo', 'Chantilly']
+            },
+            3: {
+                time: 40, target: 10,
+                bg: "#ecfdf5", cardBg: "#f0fdf4", primary: "#065f46", secondary: "#059669",
+                doces: ['Brigadeiro', 'Maçã do Amor', 'Bolo Decorado'],
+                recheios: ['Chocolate', 'Doce de Leite', 'Coco', 'Leite em Pó'],
+                coberturas: ['Granulado', 'Caramelo', 'Chantilly', 'Nozes']
+            },
+            4: {
+                time: 30, target: 12,
+                bg: "#ffedd5", cardBg: "#fff7ed", primary: "#9a3412", secondary: "#c2410c",
+                doces: ['Brigadeiro', 'Maçã do Amor', 'Bolo Decorado'],
+                recheios: ['Chocolate', 'Doce de Leite', 'Coco', 'Leite em Pó'],
+                coberturas: ['Granulado', 'Caramelo', 'Chantilly', 'Nozes']
+            }
         };
 
         let clients = [];
@@ -444,43 +529,142 @@
         let activeClientIdx = 0;
         let gameInterval = null;
         let spawnTimer = null;
+        let clockTimer = null;
         let gameStarted = false;
 
-        const docesOpcoes = ['Brigadeiro', 'Maçã do Amor', 'Bolo Decorado'];
-        const recheiosOpcoes = ['Chocolate', 'Doce de Leite'];
-        const coberturasOpcoes = ['Granulado', 'Caramelo'];
+        const imagensMap = {
+            'Brigadeiro': 'imagens/brigadeiro.png',
+            'Maçã do Amor': 'imagens/maca_amor.png',
+            'Bolo Decorado': 'imagens/bolo.png',
+            'Chocolate': 'imagens/chocolate.png',
+            'Doce de Leite': 'imagens/doce_leite.png',
+            'Coco': 'imagens/coco.png',
+            'Leite em Pó': 'imagens/leite_po.png',
+            'Granulado': 'imagens/granulado.png',
+            'Caramelo': 'imagens/caramelo.png',
+            'Chantilly': 'imagens/chantilly.png',
+            'Nozes': 'imagens/nozes.png'
+        };
+
+        function aplicarTemaFase() {
+            const cfg = fasesConfig[gameState.level] || fasesConfig[4];
+            document.documentElement.style.setProperty('--bg-color', cfg.bg);
+            document.documentElement.style.setProperty('--card-bg', cfg.cardBg);
+            document.documentElement.style.setProperty('--primary', cfg.primary);
+            document.documentElement.style.setProperty('--secondary', cfg.secondary);
+            
+            renderizarBotoesEstacao('doce', cfg.doces);
+            renderizarBotoesEstacao('recheio', cfg.recheios);
+            renderizarBotoesEstacao('cobertura', cfg.coberturas);
+        }
+
+        function renderizarBotoesEstacao(tipo, listaItens) {
+            const container = document.getElementById(`options-${tipo}`);
+            container.innerHTML = '';
+            listaItens.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'img-btn';
+                btn.onclick = () => selecionarIngrediente(tipo, item, btn);
+                btn.innerHTML = `
+                    <img src="${imagensMap[item] || 'imagens/bolo.png'}" alt="${item}">
+                    <span>${item}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function iniciarNovoJogo() {
+            gameState.level = 1;
+            gameState.score = 0;
+            gameState.continues = 5;
+            document.getElementById('score').innerText = gameState.score;
+            mostrarModalInicioFase(1);
+        }
+
+        function mostrarModalInicioFase(faseNum) {
+            const modal = document.getElementById('game-modal');
+            const boxContent = document.getElementById('modal-box-content');
+            boxContent.className = 'modal-content';
+
+            const chefImg = document.getElementById('modal-chef-img');
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+            const dynamicArea = document.getElementById('modal-dynamic-area');
+
+            chefImg.style.display = 'block';
+            chefImg.src = "imagens/chef_mascote.png";
+            title.innerText = `Preparar para a Fase ${faseNum}! 👨‍🍳`;
+            text.innerText = `Atende os pedidos antes que o tempo acabe e cuida da paciência dos clientes!`;
+            dynamicArea.innerHTML = `<button class="modal-btn" onclick="comecarExpediente()">Iniciar Fase ${faseNum} 🎮</button>`;
+            modal.style.display = 'flex';
+        }
 
         function comecarExpediente() {
             document.getElementById('game-modal').style.display = 'none';
-            gameState.money = 0;
+            const cfg = fasesConfig[gameState.level] || fasesConfig[4];
+
+            aplicarTemaFase();
+
+            gameState.lives = 3;
+            gameState.timeLeft = cfg.time;
             gameState.servedCount = 0;
-            document.getElementById('day-num').innerText = gameState.day;
-            document.getElementById('money').innerText = gameState.money;
-            document.getElementById('goal').innerText = gameState.goal;
+            gameState.targetServed = cfg.target;
+            
+            document.getElementById('day-num').innerText = gameState.level;
+            document.getElementById('timer').innerText = gameState.timeLeft;
             document.getElementById('served-count').innerText = gameState.servedCount;
+            document.getElementById('target-count').innerText = gameState.targetServed;
+            atualizarVidasUI();
+            atualizarContinuesUI();
+            document.getElementById('score').innerText = gameState.score;
 
             clients = [];
+            currentRecipe = { doce: null, recheio: null, cobertura: null };
             gerarCliente();
 
             if (gameInterval) clearInterval(gameInterval);
             if (spawnTimer) clearInterval(spawnTimer);
+            if (clockTimer) clearInterval(clockTimer);
 
             gameInterval = setInterval(atualizarJogo, 200);
+            
             spawnTimer = setInterval(() => {
-                if (clients.length < gameState.maxClients) {
+                if (clients.length < gameState.maxClients && gameStarted) {
                     gerarCliente();
                 }
-            }, gameState.clientSpawnInterval);
+            }, Math.max(3000, gameState.clientSpawnInterval - (gameState.level * 700)));
+
+            clockTimer = setInterval(() => {
+                if (!gameStarted) return;
+                gameState.timeLeft--;
+                document.getElementById('timer').innerText = gameState.timeLeft;
+                if (gameState.timeLeft <= 0) {
+                    verificarFimDeDia(false);
+                }
+            }, 1000);
+
             gameStarted = true;
         }
 
+        function atualizarVidasUI() {
+            let corACO = '';
+            for(let i=0; i<gameState.lives; i++) corACO += '❤️';
+            for(let i=gameState.lives; i<3; i++) corACO += '🖤';
+            document.getElementById('lives').innerText = corACO;
+        }
+
+        function atualizarContinuesUI() {
+            document.getElementById('continues').innerText = gameState.continues;
+        }
+
         function gerarCliente() {
+            const cfg = fasesConfig[gameState.level] || fasesConfig[4];
             const novoCliente = {
                 id: Date.now() + Math.random(),
                 nome: `Cliente #${Math.floor(Math.random() * 900) + 100}`,
-                doce: docesOpcoes[Math.floor(Math.random() * docesOpcoes.length)],
-                recheio: recheiosOpcoes[Math.floor(Math.random() * recheiosOpcoes.length)],
-                cobertura: coberturasOpcoes[Math.floor(Math.random() * coberturasOpcoes.length)],
+                doce: cfg.doces[Math.floor(Math.random() * cfg.doces.length)],
+                recheio: cfg.recheios[Math.floor(Math.random() * cfg.recheios.length)],
+                cobertura: cfg.coberturas[Math.floor(Math.random() * cfg.coberturas.length)],
                 patience: 100,
                 alertaEmitido: false
             };
@@ -511,8 +695,9 @@
 
         function atualizarJogo() {
             if (!gameStarted) return;
+            const decay = gameState.patienceDecayRate + (gameState.level * 0.08);
             for (let i = clients.length - 1; i >= 0; i--) {
-                clients[i].patience -= gameState.patienceDecayRate;
+                clients[i].patience -= decay;
                 
                 if (clients[i].patience <= 30 && clients[i].patience > 0 && !clients[i].alertaEmitido) {
                     tocarSom('alerta_paciencia');
@@ -521,17 +706,28 @@
 
                 if (clients[i].patience <= 0) {
                     clients.splice(i, 1);
+                    perderVida();
+                    gameState.score = Math.max(0, gameState.score - 50);
+                    document.getElementById('score').innerText = gameState.score;
                 }
             }
             renderizarClientes();
             verificarProntidao();
-            verificarFimDeDia();
+        }
+
+        function perderVida() {
+            gameState.lives--;
+            atualizarVidasUI();
+            tocarSom('erro');
+            if (gameState.lives <= 0) {
+                verificarFimDeDia(false);
+            }
         }
 
         function renderizarClientes() {
             const container = document.getElementById('clients-container');
             if (clients.length === 0) {
-                container.innerHTML = `<p style="text-align: center; color: #795548; font-size: 0.68rem;">Aguardando clientes...</p>`;
+                container.innerHTML = `<p style="text-align: center; color: var(--primary); font-size: 0.65rem;">Aguardando clientes...</p>`;
                 return;
             }
 
@@ -543,7 +739,7 @@
                 card.innerHTML = `
                     <div class="client-info">
                         <b>${c.nome}</b>
-                        <span style="color: #5d4037;">${c.doce} (${c.recheio}+${c.cobertura})</span>
+                        <span style="color: #5d4037;">${c.doce} (${c.recheio} + ${c.cobertura})</span>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
                         <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer; font-size: 0.6rem;">Atender</button>
@@ -574,78 +770,170 @@
                 currentRecipe.cobertura === cliente.cobertura
             ) {
                 tocarSom('sucesso');
-                gameState.money += 30;
                 gameState.servedCount++;
+                
+                const pontosGanhos = 100 + Math.floor(cliente.patience * 2);
+                gameState.score += pontosGanhos;
+                document.getElementById('score').innerText = gameState.score;
+
                 clients.splice(activeClientIdx, 1);
                 activeClientIdx = 0;
 
-                document.getElementById('money').innerText = gameState.money;
                 document.getElementById('served-count').innerText = gameState.servedCount;
 
                 currentRecipe = { doce: null, recheio: null, cobertura: null };
                 document.querySelectorAll('.img-btn').forEach(b => b.classList.remove('selected'));
                 document.getElementById('deliver-btn').disabled = true;
+
+                if (gameState.servedCount >= gameState.targetServed) {
+                    verificarFimDeDia(true);
+                }
             } else {
                 tocarSom('erro');
-                mostrarAvisoErro();
+                perderVida();
+                gameState.score = Math.max(0, gameState.score - 30);
+                document.getElementById('score').innerText = gameState.score;
             }
         }
 
-        function mostrarAvisoErro() {
+        function verificarFimDeDia(sucesso) {
+            gameStarted = false;
+            clearInterval(gameInterval);
+            clearInterval(spawnTimer);
+            clearInterval(clockTimer);
+
             const modal = document.getElementById('game-modal');
+            const boxContent = document.getElementById('modal-box-content');
+            boxContent.className = 'modal-content';
+
+            const chefImg = document.getElementById('modal-chef-img');
             const title = document.getElementById('modal-title');
             const text = document.getElementById('modal-text');
-            const btn = document.getElementById('modal-action-btn');
+            const dynamicArea = document.getElementById('modal-dynamic-area');
+            chefImg.style.display = 'block';
 
-            title.innerText = "Ops! Receita Errada! ❌";
-            text.innerText = "A combinação de doces não confere com o pedido deste cliente. Verifique os ingredientes!";
-            btn.innerText = "Tentar Novamente 🧁";
-            
-            btn.onclick = fecharAvisoErro;
+            if (sucesso) {
+                tocarSom('fim_fase');
+                if (gameState.level < 4) {
+                    chefImg.src = "imagens/chef_mascote.png";
+                    title.innerText = `Fase ${gameState.level} Concluída! 🎉`;
+                    text.innerText = `Excelente! Pontuação atual: ${gameState.score}. Prepare-se para a Fase ${gameState.level + 1}!`;
+                    dynamicArea.innerHTML = `<button class="modal-btn" onclick="gameState.level++; mostrarModalInicioFase(gameState.level);">Avançar para Fase ${gameState.level + 1} 🚀</button>`;
+                } else {
+                    chefImg.src = "imagens/chef_vitoria.png";
+                    title.innerText = "Mestre Confeiteiro Supremo! 🏆👑";
+                    text.innerText = `Zeraste o jogo com ${gameState.score} pontos! Regista a tua pontuação:`;
+                    mostrarTelaSalvarScore(dynamicArea);
+                }
+            } else {
+                tocarSom('game_over');
+                chefImg.src = "imagens/chef_triste.png";
+                
+                gameState.continues--;
+                atualizarContinuesUI();
+
+                if (gameState.continues > 0) {
+                    title.innerText = "Game Over 💀";
+                    text.innerText = `Perdeu a fase! Restam ${gameState.continues} continue(s). Pontuação: ${gameState.score}`;
+                    dynamicArea.innerHTML = `<button class="modal-btn" onclick="mostrarModalInicioFase(gameState.level);">Tentar Novamente (Restam ${gameState.continues}) 🔄</button>`;
+                } else {
+                    title.innerText = "Fim de Jogo ❌";
+                    text.innerText = `Esgotaste os 5 continues! Retornarás à Fase 1. Pontuação final: ${gameState.score}`;
+                    mostrarTelaSalvarScore(dynamicArea);
+                }
+            }
             modal.style.display = 'flex';
         }
 
-        function fecharAvisoErro() {
-            tocarSom('clique1');
-            document.getElementById('game-modal').style.display = 'none';
-            const btn = document.getElementById('modal-action-btn');
-            btn.onclick = proximoDia;
+        function mostrarTelaSalvarScore(container) {
+            container.innerHTML = `
+                <input type="text" id="player-name" class="input-nome" placeholder="Digite seu Nome" maxlength="15">
+                <button class="modal-btn" onclick="salvarPontuacaoEVoltarMenu()">Salvar Recorde 💾</button>
+            `;
         }
 
-        function verificarFimDeDia() {
-            if (gameState.servedCount >= 6) {
-                gameStarted = false;
-                clearInterval(gameInterval);
-                clearInterval(spawnTimer);
-                tocarSom('fim_fase');
+        function salvarPontuacaoEVoltarMenu() {
+            const nomeInput = document.getElementById('player-name');
+            const nome = nomeInput ? nomeInput.value.trim() || 'Confeiteiro Anónimo' : 'Confeiteiro Anónimo';
+            
+            const agora = new Date();
+            const dataHora = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
 
-                const modal = document.getElementById('game-modal');
-                const title = document.getElementById('modal-title');
-                const text = document.getElementById('modal-text');
-                const btn = document.getElementById('modal-action-btn');
+            let recordes = JSON.parse(localStorage.getItem('g_gordice_recordes') || '[]');
+            recordes.push({ nome: nome, score: gameState.score, data: dataHora });
+            recordes.sort((a, b) => b.score - a.score);
+            recordes = recordes.slice(0, 5);
 
-                if (gameState.money >= gameState.goal) {
-                    title.innerText = "Parabéns! Meta Atingida! 🎉";
-                    text.innerText = `Faturou R$ ${gameState.money} e bateu a meta do dia ${gameState.day}!`;
-                } else {
-                    title.innerText = "Expediente Encerrado 📦";
-                    text.innerText = `Faturou R$ ${gameState.money}, mas faltou para a meta de R$ ${gameState.goal}.`;
-                }
-                
-                btn.innerText = "Iniciar Próximo Dia 🚀";
-                btn.onclick = proximoDia;
-                modal.style.display = 'flex';
+            localStorage.setItem('g_gordice_recordes', JSON.stringify(recordes));
+            voltarMenuPrincipal();
+        }
+
+        function voltarMenuPrincipal() {
+            gameState.level = 1;
+            gameState.score = 0;
+            gameState.continues = 5;
+            
+            const modal = document.getElementById('game-modal');
+            const boxContent = document.getElementById('modal-box-content');
+            boxContent.className = 'modal-content menu-inicial'; 
+
+            // Esconde os textos antigos dentro do menu inicial com imagem
+            document.getElementById('modal-chef-img').style.display = 'none';
+            document.getElementById('modal-title').style.display = 'none';
+            document.getElementById('modal-text').style.display = 'none';
+
+            const dynamicArea = document.getElementById('modal-dynamic-area');
+
+            // Botões sobrepostos na exata posição dos botões da imagem
+            dynamicArea.innerHTML = `
+                <div class="menu-botoes-sobrepostos">
+                    <button class="btn-overlay" onclick="iniciarNovoJogo()"></button>
+                    <button class="btn-overlay" onclick="abrirTelaRecordes()"></button>
+                    <a class="btn-overlay" href="https://instagram.com/g_gordice" target="_blank" style="display:block;"></a>
+                </div>
+            `;
+            modal.style.display = 'flex';
+        }
+
+        function abrirTelaRecordes() {
+            const modal = document.getElementById('game-modal');
+            const boxContent = document.getElementById('modal-box-content');
+            boxContent.className = 'modal-content'; 
+
+            const chefImg = document.getElementById('modal-chef-img');
+            chefImg.style.display = 'none';
+
+            const title = document.getElementById('modal-title');
+            const text = document.getElementById('modal-text');
+            const dynamicArea = document.getElementById('modal-dynamic-area');
+
+            title.style.display = 'block';
+            text.style.display = 'block';
+            title.innerText = "🏆 Tabela de Recordes";
+            text.innerText = "Os melhores confeiteiros da casa:";
+
+            let recordes = JSON.parse(localStorage.getItem('g_gordice_recordes') || '[]');
+            
+            let htmlList = '<div class="score-list">';
+            if (recordes.length === 0) {
+                htmlList += '<p style="text-align:center; padding: 10px; color:#795548;">Nenhum recorde salvo ainda!</p>';
+            } else {
+                recordes.forEach((r, idx) => {
+                    htmlList += `
+                        <div class="score-item">
+                            <span><b>#${idx+1} ${r.nome}</b><br><small style="color:#666;">${r.data}</small></span>
+                            <span style="color:var(--accent); font-weight:bold; align-self:center;">⭐ ${r.score}</span>
+                        </div>
+                    `;
+                });
             }
+            htmlList += '</div>';
+
+            htmlList += `<button class="modal-btn secondary" onclick="voltarMenuPrincipal()">Voltar ao Menu ⬅️</button>`;
+            dynamicArea.innerHTML = htmlList;
         }
 
-        function proximoDia() {
-            tocarSom('clique1');
-            if (gameState.money >= gameState.goal) {
-                gameState.day++;
-                gameState.goal += 60;
-            }
-            comecarExpediente();
-        }
+        voltarMenuPrincipal();
     </script>
 </body>
 </html>
