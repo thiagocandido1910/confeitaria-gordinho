@@ -488,8 +488,7 @@
             servedCount: 0,
             targetServed: 6,
             maxClients: 3,
-            // Variável base para o tempo de espera (quanto menor, mais rápido)
-            clientSpawnBaseInterval: 6000, 
+            clientSpawnBaseInterval: 6000, // Tempo base para o delay dos pedidos (quanto menor, mais rápido)
             patienceDecayRate: 0.4
         };
 
@@ -632,9 +631,8 @@
 
             gameInterval = setInterval(atualizarJogo, 200);
             
-            // --- AJUSTE NOVO DO SPAWN (Delay do Pedido) ---
-            // Quanto maior o nível, mais rápido o cliente aparece.
-            // Fase 1: ~5.3s / Fase 2: ~4.3s / Fase 3: ~3.3s / Fase 4: ~2.3s
+            // --- AJUSTE DO SPAWN (Delay do Pedido) ---
+            // Fase 1: 5s / Fase 2: 4s / Fase 3: 3s / Fase 4: 2s
             const intervaloSpawn = Math.max(2000, gameState.clientSpawnBaseInterval - (gameState.level * 1000));
             
             spawnTimer = setInterval(() => {
@@ -706,8 +704,8 @@
 
         function atualizarJogo() {
             if (!gameStarted) return;
-            // A velocidade que a barra diminui aumenta com a fase
-            const decay = gameState.patienceDecayRate + (gameState.level * 0.12);
+            // A velocidade que a barra diminui aumenta ligeiramente com a fase
+            const decay = gameState.patienceDecayRate + (gameState.level * 0.08);
             for (let i = clients.length - 1; i >= 0; i--) {
                 clients[i].patience -= decay;
                 
@@ -770,4 +768,8 @@
             renderizarClientes();
         }
 
-        function entregarPedido
+        function entregarPedido() {
+            if (!gameStarted || clients.length === 0) return;
+            if (activeClientIdx >= clients.length) activeClientIdx = 0;
+            
+            const cliente = clients[
