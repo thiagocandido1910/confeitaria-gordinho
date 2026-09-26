@@ -26,16 +26,17 @@
             color: var(--text-color);
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            /* Usa dvh para se adaptar perfeitamente às barras do Android/Browser */
+            height: 100dvh;
             width: 100vw;
             overflow: hidden;
-            padding: 2px;
-            gap: 2px;
+            padding: 4px 4px 12px 4px; /* Margem extra em baixo para a barra do Android */
+            gap: 3px;
         }
 
         header {
             text-align: center;
-            height: 20px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -43,7 +44,7 @@
         }
 
         header h1 {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--primary);
         }
 
@@ -53,10 +54,10 @@
             justify-content: space-around;
             background: var(--card-bg);
             border: 2px solid var(--secondary);
-            padding: 2px;
-            border-radius: 5px;
+            padding: 3px;
+            border-radius: 6px;
             font-weight: bold;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
             flex-shrink: 0;
         }
@@ -66,22 +67,22 @@
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
             border-radius: 6px;
-            padding: 2px 4px;
-            height: 18vh;
-            min-height: 85px;
+            padding: 3px 5px;
+            height: 17vh;
+            min-height: 80px;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
         }
 
         .panel-title {
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             color: var(--primary);
             text-align: center;
             font-weight: bold;
             border-bottom: 1px dashed var(--secondary);
             padding-bottom: 1px;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
         }
 
         #clients-container {
@@ -96,11 +97,11 @@
             background: white;
             border: 1px solid #d7ccc8;
             border-radius: 4px;
-            padding: 2px 4px;
+            padding: 2px 5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.62rem;
+            font-size: 0.65rem;
             flex-shrink: 0;
         }
 
@@ -111,7 +112,7 @@
         }
 
         .patience-bar {
-            width: 40px;
+            width: 42px;
             height: 3px;
             background-color: #e0e0e0;
             border-radius: 2px;
@@ -125,12 +126,12 @@
             width: 100%;
         }
 
-        /* Bancada Ultra Compacta para Telemóvel */
+        /* Bancada Adaptada com Scroll Interno Seguro */
         .panel-bancada {
             background-color: var(--card-bg);
             border: 2px solid var(--secondary);
             border-radius: 6px;
-            padding: 3px 5px;
+            padding: 4px 6px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -140,11 +141,11 @@
 
         .station-group {
             width: 100%;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
         }
 
         .station-group label {
-            font-size: 0.62rem;
+            font-size: 0.65rem;
             font-weight: bold;
             color: var(--primary);
             display: block;
@@ -153,7 +154,7 @@
 
         .img-options {
             display: flex;
-            gap: 3px;
+            gap: 4px;
             width: 100%;
             justify-content: center;
         }
@@ -162,8 +163,8 @@
             flex: 1;
             background-color: #fff;
             border: 2px solid #d7ccc8;
-            border-radius: 5px;
-            padding: 1px;
+            border-radius: 6px;
+            padding: 2px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -172,13 +173,13 @@
         }
 
         .img-btn img {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             object-fit: contain;
         }
 
         .img-btn span {
-            font-size: 0.55rem;
+            font-size: 0.58rem;
             font-weight: bold;
             color: var(--text-color);
             margin-top: 1px;
@@ -195,14 +196,14 @@
             background-color: #10b981;
             color: white;
             border: none;
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 0.75rem;
+            padding: 7px;
+            border-radius: 6px;
+            font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-            margin-top: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            margin-top: 4px;
             flex-shrink: 0;
         }
 
@@ -229,21 +230,21 @@
         .modal-content {
             background: var(--card-bg);
             border: 3px solid var(--secondary);
-            padding: 12px;
+            padding: 14px;
             border-radius: 10px;
             text-align: center;
-            max-width: 260px;
+            max-width: 270px;
             width: 90%;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .modal-chef-img {
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--accent);
-            margin-bottom: 4px;
+            margin-bottom: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
@@ -251,11 +252,11 @@
             background-color: #10b981;
             color: white;
             border: none;
-            padding: 6px 10px;
-            border-radius: 5px;
+            padding: 7px 12px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin-top: 8px;
             width: 100%;
             box-shadow: 0 2px 3px rgba(0,0,0,0.1);
@@ -277,7 +278,7 @@
     <div class="panel-clientes">
         <div class="panel-title">Fila de Clientes 👥</div>
         <div id="clients-container">
-            <p style="text-align: center; color: #795548; font-size: 0.65rem;">Aguardando início...</p>
+            <p style="text-align: center; color: #795548; font-size: 0.68rem;">Aguardando início...</p>
         </div>
     </div>
 
@@ -337,8 +338,8 @@
     <div class="modal" id="game-modal">
         <div class="modal-content">
             <img src="imagens/chef_mascote.png" alt="Chef Gordinho" class="modal-chef-img">
-            <h2 id="modal-title" style="font-size: 0.9rem; color: var(--primary);">Bem-vindo à Confeitaria!</h2>
-            <p id="modal-text" style="font-size: 0.7rem; margin: 4px 0;">Prepare os doces certos e entregue <strong>6 pedidos</strong> para bater a meta do dia!</p>
+            <h2 id="modal-title" style="font-size: 0.95rem; color: var(--primary);">Bem-vindo à Confeitaria!</h2>
+            <p id="modal-text" style="font-size: 0.72rem; margin: 6px 0;">Prepare os doces certos e entregue <strong>6 pedidos</strong> para bater a meta do dia!</p>
             <button class="modal-btn" id="modal-action-btn" onclick="comecarExpediente()">Iniciar Dia 1 🎮</button>
         </div>
     </div>
@@ -530,7 +531,7 @@
         function renderizarClientes() {
             const container = document.getElementById('clients-container');
             if (clients.length === 0) {
-                container.innerHTML = `<p style="text-align: center; color: #795548; font-size: 0.65rem;">Aguardando clientes...</p>`;
+                container.innerHTML = `<p style="text-align: center; color: #795548; font-size: 0.68rem;">Aguardando clientes...</p>`;
                 return;
             }
 
@@ -545,7 +546,7 @@
                         <span style="color: #5d4037;">${c.doce} (${c.recheio}+${c.cobertura})</span>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
-                        <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 4px; border-radius:3px; cursor:pointer; font-size: 0.58rem;">Atender</button>
+                        <button onclick="selecionarClienteAlvo(${index})" style="background:var(--secondary); color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer; font-size: 0.6rem;">Atender</button>
                         <div class="patience-bar">
                             <div class="patience-fill" style="width: ${c.patience}%; background-color: ${c.patience > 40 ? '#10b981' : '#ef4444'};"></div>
                         </div>
